@@ -1,113 +1,85 @@
 <template>
   <div class="recom-list">
-    <div 
-      class="recom" 
-      v-for="(r, i) in items" 
+    <button
+      v-for="(r, i) in items"
       :key="i"
+      class="recom"
+      type="button"
       @click="$emit('click', r)"
     >
-      <div class="dot"></div>
       <div class="body">
         <div class="title">{{ r.title }}</div>
         <div class="desc">{{ r.desc }}</div>
       </div>
-      <div class="arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="5" y1="12" x2="19" y2="12"/>
-          <polyline points="12 5 19 12 12 19"/>
-        </svg>
-      </div>
-    </div>
-    <div v-if="!items || items.length===0" class="empty">暂无推荐</div>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <polyline points="9 6 15 12 9 18" />
+      </svg>
+    </button>
+
+    <div v-if="!items || items.length === 0" class="empty">暂无推荐</div>
   </div>
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue'
-const props = defineProps({ items: { type: Array, default: () => [] } })
-const emit = defineEmits(['click'])
+defineProps({ items: { type: Array, default: () => [] } })
+defineEmits(['click'])
 </script>
 
 <style scoped>
 .recom-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-2);
 }
 
 .recom {
   display: flex;
-  gap: 12px;
   align-items: center;
-  padding: 12px 16px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  cursor: pointer;
-  transition: all 0.3s ease;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
 }
 
 .recom:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(16, 185, 129, 0.3);
-  transform: translateX(4px);
+  background: var(--surface-2);
+  border-color: var(--border);
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  background: linear-gradient(135deg, #10b981, #3b82f6);
-  border-radius: 50%;
-  flex-shrink: 0;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
-}
-
-.body {
-  flex: 1;
-  min-width: 0;
-}
+.body { flex: 1; min-width: 0; }
 
 .title {
-  font-weight: 600;
-  font-size: 15px;
-  color: #ffffff;
-  margin-bottom: 4px;
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--text);
 }
 
 .desc {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  color: var(--text-2);
 }
 
 .arrow {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.15));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #10b981;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
-  transition: all 0.3s ease;
-  opacity: 0;
-  transform: translateX(-8px);
+  color: var(--text-3);
+  transition: transform var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
-
 .recom:hover .arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.arrow svg {
-  width: 16px;
-  height: 16px;
+  color: var(--accent);
+  transform: translateX(2px);
 }
 
 .empty {
-  color: rgba(255, 255, 255, 0.4);
-  padding: 24px;
+  padding: var(--space-6);
   text-align: center;
-  font-size: 14px;
+  font-size: var(--text-sm);
+  color: var(--text-3);
 }
 </style>

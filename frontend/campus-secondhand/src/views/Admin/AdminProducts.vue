@@ -844,3 +844,61 @@ onMounted(() => {
   }
 }
 </style>
+
+<!-- ===== 简约浅色主题覆盖 ===== -->
+<style scoped>
+.admin-products { max-width: var(--container); padding: var(--space-6); font-family: var(--font-sans); }
+.admin-header { border-bottom: 1px solid var(--border); padding-bottom: var(--space-4); margin-bottom: var(--space-5); }
+.admin-header h1 { font-size: var(--text-2xl); font-weight: var(--weight-semibold); letter-spacing: -0.02em; color: var(--text); }
+.back-link { color: var(--text); background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 8px 14px; font-size: var(--text-sm); }
+.back-link:hover { background: var(--surface-2); transform: none; }
+
+.filter-form { gap: var(--space-3); }
+.search-input, .filter-select { padding: 10px 14px; border: 1px solid var(--border-strong); border-radius: var(--radius); font-size: var(--text-base); color: var(--text); background: var(--surface); }
+.search-input:focus, .filter-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.search-button { padding: 10px 20px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); font-size: var(--text-base); font-weight: var(--weight-medium); }
+.search-button:hover { background: var(--accent-hover); transform: none; box-shadow: none; }
+
+.products-table-container { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: none; }
+.products-table { background: var(--surface); }
+.products-table th, .products-table td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border); font-size: var(--text-sm); }
+.products-table th { background: var(--surface-2); color: var(--text-2); font-weight: var(--weight-medium); text-transform: none; letter-spacing: 0; }
+.products-table td { color: var(--text); }
+.products-table tr:last-child td { border-bottom: none; }
+.products-table tr:hover { background: var(--surface-2); }
+
+.status-badge { padding: 3px 12px; border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: var(--weight-medium); text-transform: none; letter-spacing: 0; }
+.status-available { background: var(--accent-soft); color: var(--accent); }
+.status-sold { background: var(--info-soft); color: var(--info); }
+.status-offline { background: var(--surface-3); color: var(--text-2); }
+
+.action-button { padding: 5px 12px; border-radius: var(--radius-sm); font-size: var(--text-xs); font-weight: var(--weight-medium); text-transform: none; letter-spacing: 0; border: 1px solid transparent; background: var(--surface-3); color: var(--text); }
+.view-button { background: var(--surface-3); color: var(--text); }
+.view-button:hover { background: var(--surface-2); }
+.action上架 { background: var(--accent-soft); color: var(--accent); }
+.action上架:hover { background: var(--accent); color: #fff; }
+.action下架 { background: var(--danger-soft); color: var(--danger); }
+.action下架:hover { background: var(--danger); color: #fff; }
+
+.pagination { border-top: 1px solid var(--border); }
+.pagination-button { padding: 6px 14px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font-size: var(--text-sm); }
+.pagination-button:hover:not(:disabled) { background: var(--surface-2); transform: none; }
+.pagination-info { font-size: var(--text-sm); color: var(--text-2); }
+
+.loading-spinner { border: 3px solid var(--surface-3); border-top-color: var(--accent); }
+.error-container { color: var(--danger); }
+.retry-button { background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); }
+.retry-button:hover { background: var(--surface-2); }
+
+.modal-overlay { background: rgba(20,20,18,0.35); }
+.modal-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+.modal-header { border-bottom: 1px solid var(--border); }
+.modal-header h2 { color: var(--text); font-weight: var(--weight-semibold); }
+.close-button { color: var(--text-2); border-radius: var(--radius-sm); }
+.close-button:hover { background: var(--surface-3); color: var(--text); }
+.detail-label { color: var(--text); font-weight: var(--weight-medium); }
+.detail-value { color: var(--text-2); }
+.modal-footer { border-top: 1px solid var(--border); }
+.close-modal-button { background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); }
+.close-modal-button:hover { background: var(--surface-2); transform: none; }
+</style>

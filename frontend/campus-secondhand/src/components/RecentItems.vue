@@ -1,71 +1,83 @@
 <template>
   <div class="recent-list">
-    <div class="item" v-for="(it, idx) in items" :key="idx" @click="$emit('view', it)">
+    <button
+      v-for="(it, idx) in items"
+      :key="idx"
+      class="item"
+      type="button"
+      @click="$emit('view', it)"
+    >
       <div class="thumb">
-        <img :src="it.img" :alt="it.title" />
+        <img v-if="it.img" :src="it.img" :alt="it.title" />
+        <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <circle cx="9" cy="9" r="2" />
+          <path d="M21 15l-5-5L5 21" />
+        </svg>
       </div>
       <div class="info">
         <div class="title">{{ it.title }}</div>
-        <div class="meta">{{ it.price }} · 发布于校园</div>
+        <div class="meta">{{ it.price }} · 校园在售</div>
       </div>
-      <div class="view-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </div>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <polyline points="9 6 15 12 9 18" />
+      </svg>
+    </button>
+
+    <div v-if="!items || items.length === 0" class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M3 9h18M9 21V9" />
+      </svg>
+      <p>暂无商品，快去发布第一个吧</p>
     </div>
-    <div v-if="!items || items.length===0" class="empty">暂无商品，快去发布第一个吧！</div>
   </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
-const props = defineProps({ items: { type: Array, default: () => [] } })
+defineProps({ items: { type: Array, default: () => [] } })
+defineEmits(['view'])
 </script>
 
 <style scoped>
 .recent-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-2);
 }
 
 .item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  cursor: pointer;
-  transition: all 0.3s ease;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-3);
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
 }
 
 .item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(16, 185, 129, 0.3);
-  transform: translateX(4px);
+  background: var(--surface-2);
+  border-color: var(--border);
 }
 
 .thumb {
-  width: 72px;
-  height: 72px;
-  border-radius: 10px;
-  overflow: hidden;
+  width: 56px;
+  height: 56px;
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--surface-3);
+  color: var(--text-3);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-.thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.thumb svg { width: 24px; height: 24px; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
 
 .info {
   flex: 1;
@@ -73,48 +85,41 @@ const props = defineProps({ items: { type: Array, default: () => [] } })
 }
 
 .title {
-  font-weight: 600;
-  font-size: 15px;
-  color: #ffffff;
-  margin-bottom: 4px;
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--text);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .meta {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 13px;
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  color: var(--text-2);
 }
 
-.view-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #10b981;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.item:hover .view-btn {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-  transform: scale(1.1);
-}
-
-.view-btn svg {
+.arrow {
   width: 18px;
   height: 18px;
+  flex-shrink: 0;
+  color: var(--text-3);
+  transition: transform var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.item:hover .arrow {
+  color: var(--accent);
+  transform: translateX(2px);
 }
 
 .empty {
-  color: rgba(255, 255, 255, 0.4);
-  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-10) var(--space-4);
+  color: var(--text-3);
   text-align: center;
-  font-size: 14px;
 }
+.empty svg { width: 32px; height: 32px; }
+.empty p { font-size: var(--text-sm); }
 </style>

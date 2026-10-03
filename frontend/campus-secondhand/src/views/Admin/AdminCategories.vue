@@ -325,3 +325,27 @@ onMounted(() => {
   margin-top: 20px;
 }
 </style>
+
+<!-- ===== 简约浅色主题覆盖 ===== -->
+<style scoped>
+.admin-categories { max-width: var(--container); padding: var(--space-6); }
+.admin-categories h1 { font-size: var(--text-2xl); font-weight: var(--weight-semibold); letter-spacing: -0.02em; color: var(--text); margin-bottom: var(--space-5); }
+.category-form, .category-list { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-5); margin-bottom: var(--space-5); box-shadow: none; }
+.category-form h3, .category-list h3 { font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--text); margin-bottom: var(--space-4); }
+.form-group label { color: var(--text-2); font-weight: var(--weight-medium); font-size: var(--text-sm); }
+.form-input { width: 100%; padding: 10px 14px; border: 1px solid var(--border-strong); border-radius: var(--radius); font-size: var(--text-base); color: var(--text); background: var(--surface); }
+.form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.btn-primary { padding: 9px 18px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); font-size: var(--text-base); font-weight: var(--weight-medium); }
+.btn-primary:hover { background: var(--accent-hover); }
+.category-item { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-4); margin-bottom: var(--space-2); box-shadow: none; }
+.category-name { font-size: var(--text-base); font-weight: var(--weight-medium); color: var(--text); }
+.category-count { font-size: var(--text-sm); color: var(--text-2); }
+.btn-secondary { padding: 7px 16px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font-size: var(--text-sm); }
+.btn-secondary:hover { background: var(--surface-3); }
+.btn-danger { padding: 7px 16px; background: var(--danger-soft); color: var(--danger); border: none; border-radius: var(--radius-sm); font-size: var(--text-sm); }
+.btn-danger:hover { background: var(--danger); color: #fff; }
+.no-categories { text-align: center; padding: var(--space-12); color: var(--text-3); font-size: var(--text-base); }
+.modal { background: rgba(20,20,18,0.35); }
+.modal-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+.modal-content h3 { font-size: var(--text-lg); color: var(--text); }
+</style>

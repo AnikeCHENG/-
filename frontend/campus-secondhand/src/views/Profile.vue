@@ -2426,3 +2426,93 @@ onMounted(() => {
   }
 }
 </style>
+
+<!-- ===== 简约浅色主题覆盖（Design Tokens） ===== -->
+<style scoped>
+.profile-page { background: var(--bg); font-family: var(--font-sans); }
+.animated-bg { display: none; }
+
+.main-header { position: sticky; background: rgba(255,255,255,0.85); backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--border); }
+.header-content { max-width: var(--container); height: var(--header-h); padding: 0 var(--space-6); }
+.header-logo { width: 30px; height: 30px; }
+.brand-name { font-size: var(--text-lg); font-weight: var(--weight-semibold); background: none; -webkit-text-fill-color: currentColor; color: var(--text); letter-spacing: -0.01em; }
+.main-nav { gap: var(--space-1); }
+.nav-link { padding: 8px 12px; color: var(--text-2); border-radius: var(--radius-sm); }
+.nav-link:hover { color: var(--text); background: var(--surface-3); }
+.nav-link.active { color: var(--accent); background: var(--accent-soft); }
+.action-btn { width: 38px; height: 38px; border-radius: var(--radius); background: transparent; color: var(--text-2); border: 1px solid transparent; }
+.action-btn:hover { background: var(--surface-3); color: var(--text); transform: none; }
+
+.main-content { max-width: var(--container); padding: calc(var(--header-h) + var(--space-6)) var(--space-6) var(--space-16); }
+
+.profile-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-8); gap: var(--space-8); }
+.avatar { width: 96px; height: 96px; border: 1px solid var(--border); }
+.avatar-wrapper { width: 96px; height: 96px; }
+.avatar-ring { inset: -4px; background: none; border: 2px solid var(--accent-soft-strong); animation: none; }
+.badge { border-radius: var(--radius-full); }
+.badge.verified { background: var(--accent-soft); color: var(--accent); }
+.badge.level { background: var(--warning-soft); color: var(--warning); }
+.user-name { font-size: var(--text-2xl); color: var(--text); font-weight: var(--weight-semibold); letter-spacing: -0.02em; }
+.user-bio { color: var(--text-2); }
+.meta-item { color: var(--text-2); }
+.meta-item svg { color: var(--text-3); }
+.stat-value { color: var(--text); font-size: var(--text-2xl); font-weight: var(--weight-semibold); }
+.stat-label { color: var(--text-2); }
+.stat-divider { background: var(--border); }
+
+.action-btn-primary { background: var(--accent); color: #fff; border-radius: var(--radius); font-weight: var(--weight-medium); }
+.action-btn-primary:hover { background: var(--accent-hover); box-shadow: none; transform: none; }
+.action-btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius); font-weight: var(--weight-medium); }
+.action-btn-secondary:hover { background: var(--surface-2); }
+
+.profile-tabs { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-2); gap: var(--space-2); }
+.tab-btn { color: var(--text-2); border-radius: var(--radius-sm); font-weight: var(--weight-medium); }
+.tab-btn:hover { color: var(--text); background: var(--surface-2); }
+.tab-btn.active { background: var(--accent); color: #fff; }
+.tab-count { background: var(--surface-3); color: var(--text-2); }
+.tab-btn.active .tab-count { background: rgba(255,255,255,0.25); color: #fff; }
+
+.listing-card, .favorite-card, .order-card, .history-card, .draft-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: none; }
+.listing-card:hover, .history-card:hover, .draft-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); transform: none; }
+.listing-title, .favorite-title, .order-title, .history-title, .draft-title, .empty-state h3 { color: var(--text); }
+.listing-price, .favorite-price, .order-price, .history-price, .draft-price { color: var(--accent); }
+.listing-views, .favorite-meta, .order-meta, .order-id, .order-date, .history-time, .draft-date, .empty-state p { color: var(--text-2); }
+.listing-status.selling { background: var(--accent-soft); color: var(--accent); }
+.listing-status.sold { background: var(--surface-3); color: var(--text-2); }
+.listing-btn.edit { background: var(--info-soft); color: var(--info); }
+.listing-btn.delete { background: var(--danger-soft); color: var(--danger); }
+.listing-btn:hover { transform: none; }
+.favorite-remove { background: var(--danger-soft); color: var(--danger); }
+.order-status.pending { background: var(--warning-soft); color: var(--warning); }
+.order-status.completed { background: var(--success-soft); color: var(--success); }
+.order-status.cancelled { background: var(--danger-soft); color: var(--danger); }
+.order-btn.primary, .empty-btn { background: var(--accent); color: #fff; border-radius: var(--radius-sm); }
+.order-btn.primary:hover, .empty-btn:hover { background: var(--accent-hover); box-shadow: none; transform: none; }
+.order-btn.secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); }
+.order-btn.danger { background: var(--danger); color: #fff; }
+.order-btn:hover { transform: none; }
+.draft-category, .draft-condition { background: var(--surface-3); color: var(--text-2); }
+.draft-btn.edit { background: var(--info-soft); color: var(--info); }
+.draft-btn.delete { background: var(--danger-soft); color: var(--danger); }
+.draft-btn:hover { transform: none; }
+.empty-icon { color: var(--text-3); opacity: 0.5; }
+
+.main-footer { background: var(--surface); border-top: 1px solid var(--border); }
+.footer-content { max-width: var(--container); }
+.footer-section h4, .footer-logo span { color: var(--text); }
+.footer-desc, .footer-links a, .footer-bottom p { color: var(--text-2); }
+.footer-links a:hover { color: var(--accent); }
+.footer-bottom { border-top: 1px solid var(--border); }
+
+.modal-overlay { background: rgba(20,20,18,0.35); }
+.edit-modal { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); backdrop-filter: none; }
+.modal-header { border-bottom: 1px solid var(--border); }
+.modal-header h2 { color: var(--text); }
+.close-btn { background: var(--surface-3); color: var(--text-2); border-radius: var(--radius-sm); }
+.close-btn:hover { background: var(--surface-2); color: var(--text); }
+.form-group label { color: var(--text-2); }
+.form-group input, .form-group textarea { background: var(--surface); border: 1px solid var(--border-strong); color: var(--text); border-radius: var(--radius); }
+.modal-footer { border-top: 1px solid var(--border); }
+.btn-cancel { background: var(--surface); border: 1px solid var(--border-strong); color: var(--text); }
+.btn-save { background: var(--accent); color: #fff; }
+</style>

@@ -1,212 +1,172 @@
 <template>
-  <div class="products-page">
-    <div class="animated-bg">
-      <div class="gradient-sphere sphere-1"></div>
-      <div class="gradient-sphere sphere-2"></div>
-      <div class="gradient-sphere sphere-3"></div>
-    </div>
-    
-    <header class="main-header">
-      <div class="header-content">
-        <div class="logo-section" @click="go('/')">
-          <svg class="header-logo" viewBox="0 0 40 40">
-            <defs>
-              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#10b981"/>
-                <stop offset="100%" style="stop-color:#3b82f6"/>
-              </linearGradient>
-            </defs>
-            <circle cx="20" cy="20" r="18" fill="url(#logoGrad)"/>
-            <path d="M13 20 L18 24 L27 16" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="brand-name">废旧物品再利用平台</span>
-        </div>
-        
-        <nav class="main-nav">
+  <div class="page">
+    <header class="site-header">
+      <div class="container header-inner">
+        <router-link to="/" class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 0 1 15-6.7L21 8" /><path d="M21 3v5h-5" />
+              <path d="M21 12a9 9 0 0 1-15 6.7L3 16" /><path d="M3 21v-5h5" />
+            </svg>
+          </span>
+          <span class="brand-name">校园二手</span>
+        </router-link>
+        <nav class="main-nav" aria-label="主导航">
           <router-link to="/" class="nav-link">首页</router-link>
-          <router-link to="/products" class="nav-link active">商品</router-link>
+          <router-link to="/products" class="nav-link">商品</router-link>
           <router-link to="/post" class="nav-link">发布</router-link>
           <router-link to="/messages" class="nav-link">消息</router-link>
           <router-link to="/profile" class="nav-link">我的</router-link>
         </nav>
-        
         <div class="header-actions">
-          <button class="action-btn logout-btn" @click="handleLogout" title="退出登录">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-              <polyline points="16 17 21 12 16 7"/>
-              <line x1="21" y1="12" x2="9" y2="12"/>
+          <button class="icon-btn" type="button" aria-label="退出登录" @click="handleLogout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" />
             </svg>
           </button>
-          <div class="user-avatar" @click="go('/profile')" style="cursor: pointer;">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23333'/%3E%3Ccircle cx='20' cy='16' r='6' fill='%23666'/%3E%3Cpath d='M8 36c0-6.6 5.4-12 12-12s12 5.4 12 12' fill='%23666'/%3E%3C/svg%3E" alt="用户头像" />
-          </div>
+          <button class="avatar" type="button" aria-label="个人中心" @click="go('/profile')">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%230b6e54'/%3E%3Ccircle cx='20' cy='16' r='6' fill='%23ffffff'/%3E%3Cpath d='M8 36c0-6.6 5.4-12 12-12s12 5.4 12 12' fill='%23ffffff'/%3E%3C/svg%3E" alt="用户头像" />
+          </button>
         </div>
       </div>
     </header>
 
-    <main class="main-content">
-      <div class="page-header">
-        <h1 class="page-title">商品列表</h1>
-        <p class="page-subtitle">发现校园里的实惠好物</p>
+    <main class="page-main">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">商品列表</h1>
+          <p class="page-sub">发现校园里的实惠好物</p>
+        </div>
+        <button class="btn btn-primary" type="button" @click="go('/post')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          发布商品
+        </button>
       </div>
 
-      <div class="search-section">
-        <div class="search-bar-wrapper">
-          <div class="search-bar">
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      <!-- 搜索 -->
+      <div class="search-wrap">
+        <div class="search-bar">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            type="text"
+            v-model="searchKeyword"
+            placeholder="搜索商品名称、描述…"
+            @keyup.enter="handleSearch"
+            @focus="showSearchSuggestions = true"
+            @blur="hideSearchSuggestions"
+          />
+          <button v-if="searchKeyword" class="clear-btn" type="button" aria-label="清空" @click="clearSearch">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
             </svg>
-            <input 
-              type="text" 
-              v-model="searchKeyword" 
-              placeholder="搜索商品名称、描述..."
-              @keyup.enter="handleSearch"
-              @focus="showSearchSuggestions = true"
-              @blur="hideSearchSuggestions"
-            />
-            <button v-if="searchKeyword" class="clear-btn" @click="clearSearch">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"/>
-                <line x1="6" y1="6" x2="18" y2="18"/>
+          </button>
+          <button class="btn btn-primary btn-sm" type="button" @click="handleSearch">搜索</button>
+        </div>
+
+        <div v-if="showSearchSuggestions && (searchSuggestions.length > 0 || searchHistory.length > 0)" class="suggestions">
+          <div v-if="searchHistory.length > 0" class="suggestion-section">
+            <div class="suggestion-head">
+              <span class="eyebrow">搜索历史</span>
+              <button class="link-btn" type="button" @click="clearSearchHistory">清空</button>
+            </div>
+            <button
+              v-for="(item, index) in searchHistory.slice(0, 5)"
+              :key="`history-${index}`"
+              class="suggestion-item"
+              type="button"
+              @mousedown="selectSuggestion(item)"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
               </svg>
-            </button>
-            <button class="search-btn" @click="handleSearch">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-              </svg>
-              搜索
+              <span>{{ item }}</span>
             </button>
           </div>
-          
-          <div v-if="showSearchSuggestions && (searchSuggestions.length > 0 || searchHistory.length > 0)" class="search-suggestions">
-            <div v-if="searchHistory.length > 0" class="suggestion-section">
-              <div class="suggestion-header">
-                <span>搜索历史</span>
-                <button class="clear-history-btn" @click="clearSearchHistory">清空</button>
-              </div>
-              <div class="suggestion-item" v-for="(item, index) in searchHistory.slice(0, 5)" :key="`history-${index}`" @mousedown="selectSuggestion(item)">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-                <span>{{ item }}</span>
-              </div>
-            </div>
-            
-            <div v-if="searchSuggestions.length > 0" class="suggestion-section">
-              <div class="suggestion-header">
-                <span>搜索建议</span>
-              </div>
-              <div class="suggestion-item" v-for="(item, index) in searchSuggestions" :key="`suggestion-${index}`" @mousedown="selectSuggestion(item)">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="11" cy="11" r="8"/>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                </svg>
-                <span>{{ item }}</span>
-              </div>
-            </div>
+          <div v-if="searchSuggestions.length > 0" class="suggestion-section">
+            <div class="suggestion-head"><span class="eyebrow">搜索建议</span></div>
+            <button
+              v-for="(item, index) in searchSuggestions"
+              :key="`suggestion-${index}`"
+              class="suggestion-item"
+              type="button"
+              @mousedown="selectSuggestion(item)"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <span>{{ item }}</span>
+            </button>
           </div>
         </div>
-        
-        <div class="advanced-filters">
-          <button class="filter-toggle-btn" @click="showAdvancedFilters = !showAdvancedFilters">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="4" y1="21" x2="4" y2="14"/>
-              <line x1="4" y1="10" x2="4" y2="3"/>
-              <line x1="12" y1="21" x2="12" y2="12"/>
-              <line x1="12" y1="8" x2="12" y2="3"/>
-              <line x1="20" y1="21" x2="20" y2="16"/>
-              <line x1="20" y1="12" x2="20" y2="3"/>
-            </svg>
-            高级筛选
-          </button>
-          
-          <div v-if="showAdvancedFilters" class="advanced-filter-options">
-            <div class="filter-group">
-              <label>价格范围</label>
-              <div class="price-range">
-                <input 
-                  type="number" 
-                  v-model="priceMin" 
-                  placeholder="最低" 
-                  class="price-input" 
-                  @input="validatePriceRange"
-                  min="0"
-                  step="0.01"
-                />
-                <span>-</span>
-                <input 
-                  type="number" 
-                  v-model="priceMax" 
-                  placeholder="最高" 
-                  class="price-input" 
-                  @input="validatePriceRange"
-                  min="0"
-                  step="0.01"
-                />
-              </div>
-              <p v-if="priceError" class="error-message">{{ priceError }}</p>
+
+        <button class="btn btn-outline btn-sm filter-toggle" type="button" @click="showAdvancedFilters = !showAdvancedFilters">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <line x1="4" y1="21" x2="4" y2="14" /><line x1="4" y1="10" x2="4" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="12" /><line x1="12" y1="8" x2="12" y2="3" />
+            <line x1="20" y1="21" x2="20" y2="16" /><line x1="20" y1="12" x2="20" y2="3" />
+          </svg>
+          高级筛选
+        </button>
+
+        <div v-if="showAdvancedFilters" class="card filters-panel">
+          <div class="filter-group">
+            <label class="field-label">价格范围</label>
+            <div class="price-range">
+              <input type="number" v-model="priceMin" placeholder="最低" class="input" min="0" step="0.01" @input="validatePriceRange" />
+              <span class="range-sep">—</span>
+              <input type="number" v-model="priceMax" placeholder="最高" class="input" min="0" step="0.01" @input="validatePriceRange" />
             </div>
-            
-            <div class="filter-group">
-              <label>成色</label>
-              <div class="condition-options">
-                <button 
-                  v-for="cond in conditions" 
-                  :key="cond.value"
-                  class="condition-btn"
-                  :class="{ active: selectedCondition === cond.value }"
-                  @click="selectedCondition = selectedCondition === cond.value ? '' : cond.value"
-                >
-                  {{ cond.label }}
-                </button>
-              </div>
-            </div>
-            
-            <div class="filter-group">
-              <label>排序方式</label>
-              <div class="sort-options">
-                <button 
-                  v-for="sort in sortOptions" 
-                  :key="sort.value"
-                  class="sort-btn"
-                  :class="{ active: selectedSort === sort.value }"
-                  @click="selectedSort = sort.value"
-                >
-                  {{ sort.label }}
-                </button>
-              </div>
-            </div>
-            
-            <div class="filter-actions">
-              <button class="apply-filter-btn" @click="applyFilters">
-                应用筛选
-              </button>
-              <button class="reset-filter-btn" @click="resetFilters">
-                重置
+            <p v-if="priceError" class="error-msg">{{ priceError }}</p>
+          </div>
+          <div class="filter-group">
+            <label class="field-label">成色</label>
+            <div class="chip-row">
+              <button
+                v-for="cond in conditions"
+                :key="cond.value"
+                class="chip"
+                :class="{ active: selectedCondition === cond.value }"
+                type="button"
+                @click="selectedCondition = selectedCondition === cond.value ? '' : cond.value"
+              >
+                {{ cond.label }}
               </button>
             </div>
           </div>
+          <div class="filter-group">
+            <label class="field-label">排序方式</label>
+            <div class="chip-row">
+              <button
+                v-for="sort in sortOptions"
+                :key="sort.value"
+                class="chip"
+                :class="{ active: selectedSort === sort.value }"
+                type="button"
+                @click="selectedSort = sort.value"
+              >
+                {{ sort.label }}
+              </button>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary" type="button" @click="applyFilters">应用筛选</button>
+            <button class="btn btn-outline" type="button" @click="resetFilters">重置</button>
+          </div>
         </div>
-      </div>
 
-      <div class="filter-section">
-        <div class="filter-tabs">
-          <button 
-            class="filter-tab" 
-            :class="{ active: activeCategory === 'all' }"
-            @click="selectCategory('all')"
-          >
-            全部
-          </button>
-          <button 
-            v-for="cat in categories" 
+        <div class="chip-row category-row">
+          <button class="chip" :class="{ active: activeCategory === 'all' }" type="button" @click="selectCategory('all')">全部</button>
+          <button
+            v-for="cat in categories"
             :key="cat.value"
-            class="filter-tab" 
+            class="chip"
             :class="{ active: activeCategory === cat.value }"
+            type="button"
             @click="selectCategory(cat.value)"
           >
             {{ cat.label }}
@@ -214,88 +174,74 @@
         </div>
       </div>
 
+      <!-- 列表 -->
       <div class="products-section">
-        <div v-if="loading" class="loading-container">
-          <div class="loading-spinner"></div>
-          <p>加载中...</p>
+        <div v-if="loading" class="empty">
+          <p class="loading-text">[ LOADING… ]</p>
         </div>
-        
-        <div v-else-if="error" class="error-container">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="12" y1="8" x2="12" y2="12"/>
-            <line x1="12" y1="16" x2="12.01" y2="16"/>
+
+        <div v-else-if="error" class="empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
           </svg>
           <p>{{ error }}</p>
-          <button class="retry-btn" @click="fetchProducts">重新加载</button>
+          <button class="btn btn-outline" type="button" @click="fetchProducts">重新加载</button>
         </div>
-        
-        <div v-else-if="filteredProducts.length === 0" class="empty-container">
-          <svg v-if="searchKeyword || activeCategory !== 'all' || priceMin || priceMax || selectedCondition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+
+        <div v-else-if="filteredProducts.length === 0" class="empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
-          <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="9" cy="21" r="1"/>
-            <circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-          </svg>
-          <p v-if="searchKeyword">没有找到包含"{{ searchKeyword }}"的商品</p>
+          <p v-if="searchKeyword">没有找到包含“{{ searchKeyword }}”的商品</p>
           <p v-else-if="activeCategory !== 'all'">该分类下暂无商品</p>
           <p v-else-if="priceMin || priceMax || selectedCondition">没有符合筛选条件的商品</p>
           <p v-else>暂无商品</p>
           <div class="empty-actions">
-            <button v-if="searchKeyword || priceMin || priceMax || selectedCondition" class="clear-filters-btn" @click="clearAllFilters">
-              清除所有筛选
-            </button>
-            <button class="post-btn" @click="go('/post')">发布商品</button>
+            <button v-if="searchKeyword || priceMin || priceMax || selectedCondition" class="btn btn-outline" type="button" @click="clearAllFilters">清除所有筛选</button>
+            <button class="btn btn-primary" type="button" @click="go('/post')">发布商品</button>
           </div>
         </div>
-        
+
         <div v-else class="products-grid">
-          <div 
-            v-for="product in filteredProducts" 
-            :key="product.id" 
+          <article
+            v-for="product in filteredProducts"
+            :key="product.id"
             class="product-card"
+            tabindex="0"
+            role="button"
             @click="viewProduct(product.id)"
+            @keydown.enter="viewProduct(product.id)"
           >
             <div class="product-image">
               <img v-if="product.images" :src="product.images" :alt="product.title" class="product-img" />
               <div v-else class="image-placeholder">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                  <circle cx="8.5" cy="8.5" r="1.5"/>
-                  <polyline points="21 15 16 10 5 21"/>
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" />
                 </svg>
               </div>
-              <div class="product-status" :class="getStatusClass(product.status)">
-                {{ getStatusText(product.status) }}
-              </div>
+              <span class="badge product-status" :class="getStatusClass(product.status)">{{ getStatusText(product.status) }}</span>
             </div>
             <div class="product-info">
               <h3 class="product-title">{{ product.title }}</h3>
               <p class="product-desc">{{ product.description }}</p>
               <div class="product-meta">
-                <span class="product-category">{{ product.category }}</span>
-                <span class="product-condition">{{ product.condition }}</span>
+                <span v-if="product.category" class="tag">{{ product.category }}</span>
+                <span v-if="product.condition" class="tag">{{ product.condition }}</span>
               </div>
               <div class="product-footer">
                 <div class="product-price">
-                  <span class="price-symbol">¥</span>
-                  <span class="price-value">{{ formatPrice(product.price) }}</span>
+                  <span class="price-symbol">¥</span><span class="price-value">{{ formatPrice(product.price) }}</span>
                 </div>
-                <span class="product-views">{{ product.viewCount || 0 }}人浏览</span>
+                <span class="product-views">{{ product.viewCount || 0 }} 人浏览</span>
               </div>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </main>
 
-    <footer class="main-footer">
-      <div class="footer-content">
-        <p>© 2025 废旧物品再利用平台</p>
-      </div>
+    <footer class="site-footer">
+      <div class="container">© 2025 校园二手交易平台</div>
     </footer>
   </div>
 </template>
@@ -336,163 +282,80 @@ const sortOptions = [
 ]
 
 const categories = [
-  { value: 'books', label: '📚 教材书籍' },
-  { value: 'electronics', label: '📱 电子产品' },
-  { value: 'transport', label: '🚴 出行工具' },
-  { value: 'gaming', label: '🎮 游戏数码' },
-  { value: 'clothing', label: '👕 服饰穿搭' },
-  { value: 'living', label: '🏠 生活用品' },
-  { value: 'other', label: '📦 其他' }
+  { value: 'books', label: '教材书籍' },
+  { value: 'electronics', label: '电子产品' },
+  { value: 'transport', label: '出行工具' },
+  { value: 'gaming', label: '游戏数码' },
+  { value: 'clothing', label: '服饰穿搭' },
+  { value: 'living', label: '生活用品' },
+  { value: 'other', label: '其他' }
 ]
 
 const searchSuggestions = computed(() => {
-  if (!searchKeyword.value || searchKeyword.value.length < 1) {
-    return []
-  }
-  
+  if (!searchKeyword.value || searchKeyword.value.length < 1) return []
   const keyword = searchKeyword.value.toLowerCase()
   const suggestions = new Set()
-  
   allProducts.value.forEach(product => {
-    if (product.title && product.title.toLowerCase().includes(keyword)) {
-      suggestions.add(product.title)
-    }
+    if (product.title && product.title.toLowerCase().includes(keyword)) suggestions.add(product.title)
     if (product.description && product.description.toLowerCase().includes(keyword)) {
-      const words = product.description.split(/\s+/).filter(word => 
-        word.toLowerCase().includes(keyword) && word.length > 1
-      )
+      const words = product.description.split(/\s+/).filter(word => word.toLowerCase().includes(keyword) && word.length > 1)
       words.forEach(word => suggestions.add(word))
     }
   })
-  
   return Array.from(suggestions).slice(0, 6)
 })
 
 const filteredProducts = computed(() => {
   let result = [...allProducts.value]
-  
-  // 分类筛选
-  if (activeCategory.value !== 'all') {
-    result = result.filter(p => p.category === activeCategory.value)
-  }
-  
-  // 搜索关键词筛选
+  if (activeCategory.value !== 'all') result = result.filter(p => p.category === activeCategory.value)
   if (searchKeyword.value) {
     const keyword = searchKeyword.value.toLowerCase()
-    result = result.filter(p => 
+    result = result.filter(p =>
       (p.title && p.title.toLowerCase().includes(keyword)) ||
       (p.description && p.description.toLowerCase().includes(keyword))
     )
   }
-  
-  // 价格范围筛选
   if (priceMin.value) {
     const min = parseFloat(priceMin.value)
-    if (!isNaN(min)) {
-      result = result.filter(p => {
-        const price = parseFloat(p.price)
-        return !isNaN(price) && price >= min
-      })
-    }
+    if (!isNaN(min)) result = result.filter(p => { const price = parseFloat(p.price); return !isNaN(price) && price >= min })
   }
-  
   if (priceMax.value) {
     const max = parseFloat(priceMax.value)
-    if (!isNaN(max)) {
-      result = result.filter(p => {
-        const price = parseFloat(p.price)
-        return !isNaN(price) && price <= max
-      })
-    }
+    if (!isNaN(max)) result = result.filter(p => { const price = parseFloat(p.price); return !isNaN(price) && price <= max })
   }
-  
-  // 成色筛选
-  if (selectedCondition.value) {
-    result = result.filter(p => p.condition === selectedCondition.value)
-  }
-  
-  // 排序
+  if (selectedCondition.value) result = result.filter(p => p.condition === selectedCondition.value)
   if (selectedSort.value) {
     switch (selectedSort.value) {
       case 'newest':
-        result.sort((a, b) => {
-          const dateA = a.createdTime ? new Date(a.createdTime) : new Date(0)
-          const dateB = b.createdTime ? new Date(b.createdTime) : new Date(0)
-          return dateB - dateA
-        })
-        break
+        result.sort((a, b) => new Date(b.createdTime || 0) - new Date(a.createdTime || 0)); break
       case 'price-low':
-        result.sort((a, b) => {
-          const priceA = parseFloat(a.price) || 0
-          const priceB = parseFloat(b.price) || 0
-          return priceA - priceB
-        })
-        break
+        result.sort((a, b) => (parseFloat(a.price) || 0) - (parseFloat(b.price) || 0)); break
       case 'price-high':
-        result.sort((a, b) => {
-          const priceA = parseFloat(a.price) || 0
-          const priceB = parseFloat(b.price) || 0
-          return priceB - priceA
-        })
-        break
+        result.sort((a, b) => (parseFloat(b.price) || 0) - (parseFloat(a.price) || 0)); break
       case 'views':
-        result.sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0))
-        break
+        result.sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0)); break
     }
   }
-  
   return result
 })
 
-function go(path) {
-  router.push(path)
-}
-
-function hideSearchSuggestions() {
-  setTimeout(() => {
-    showSearchSuggestions.value = false
-  }, 200)
-}
-
-function selectSuggestion(suggestion) {
-  searchKeyword.value = suggestion
-  showSearchSuggestions.value = false
-  handleSearch()
-}
-
-function clearSearch() {
-  searchKeyword.value = ''
-  showSearchSuggestions.value = false
-}
+function go(path) { router.push(path) }
+function hideSearchSuggestions() { setTimeout(() => { showSearchSuggestions.value = false }, 200) }
+function selectSuggestion(suggestion) { searchKeyword.value = suggestion; showSearchSuggestions.value = false; handleSearch() }
+function clearSearch() { searchKeyword.value = ''; showSearchSuggestions.value = false }
 
 function saveSearchHistory(keyword) {
   if (!keyword.trim()) return
-  
   const index = searchHistory.value.indexOf(keyword)
-  if (index > -1) {
-    searchHistory.value.splice(index, 1)
-  }
-  
+  if (index > -1) searchHistory.value.splice(index, 1)
   searchHistory.value.unshift(keyword)
   searchHistory.value = searchHistory.value.slice(0, 10)
-  
   localStorage.setItem('searchHistory', JSON.stringify(searchHistory.value))
 }
-
-function clearSearchHistory() {
-  searchHistory.value = []
-  localStorage.removeItem('searchHistory')
-}
-
+function clearSearchHistory() { searchHistory.value = []; localStorage.removeItem('searchHistory') }
 function loadSearchHistory() {
   const saved = localStorage.getItem('searchHistory')
-  if (saved) {
-    try {
-      searchHistory.value = JSON.parse(saved)
-    } catch (e) {
-      console.error('Failed to parse search history:', e)
-    }
-  }
+  if (saved) { try { searchHistory.value = JSON.parse(saved) } catch (e) { console.error(e) } }
 }
 
 async function fetchProducts() {
@@ -500,9 +363,7 @@ async function fetchProducts() {
   error.value = ''
   try {
     const res = await getProductList()
-    if (res.code === 200 && res.data) {
-      allProducts.value = res.data
-    }
+    if (res.code === 200 && res.data) allProducts.value = res.data
   } catch (e) {
     error.value = e.message || '加载商品失败'
   } finally {
@@ -510,936 +371,130 @@ async function fetchProducts() {
   }
 }
 
-async function handleSearch() {
-  saveSearchHistory(searchKeyword.value)
-  showSearchSuggestions.value = false
-}
-
-async function selectCategory(category) {
-  activeCategory.value = category
-  showAdvancedFilters.value = false
-}
-
-function applyFilters() {
-  // 验证价格范围
-  validatePriceRange()
-  // 如果价格范围有效，才关闭筛选面板
-  if (!priceError.value) {
-    showAdvancedFilters.value = false
-  }
-}
-
-function resetFilters() {
-  priceMin.value = ''
-  priceMax.value = ''
-  priceError.value = ''
-  selectedCondition.value = ''
-  selectedSort.value = 'newest'
-}
-
+async function handleSearch() { saveSearchHistory(searchKeyword.value); showSearchSuggestions.value = false }
+async function selectCategory(category) { activeCategory.value = category; showAdvancedFilters.value = false }
+function applyFilters() { validatePriceRange(); if (!priceError.value) showAdvancedFilters.value = false }
+function resetFilters() { priceMin.value = ''; priceMax.value = ''; priceError.value = ''; selectedCondition.value = ''; selectedSort.value = 'newest' }
 function validatePriceRange() {
   priceError.value = ''
   if (priceMin.value && priceMax.value) {
-    const min = parseFloat(priceMin.value)
-    const max = parseFloat(priceMax.value)
-    if (min > max) {
-      priceError.value = '最低价格不能大于最高价格'
-    }
+    if (parseFloat(priceMin.value) > parseFloat(priceMax.value)) priceError.value = '最低价格不能大于最高价格'
   }
 }
-
 function clearAllFilters() {
-  searchKeyword.value = ''
-  activeCategory.value = 'all'
-  priceMin.value = ''
-  priceMax.value = ''
-  priceError.value = ''
-  selectedCondition.value = ''
-  selectedSort.value = 'newest'
-  showAdvancedFilters.value = false
+  searchKeyword.value = ''; activeCategory.value = 'all'; priceMin.value = ''; priceMax.value = ''
+  priceError.value = ''; selectedCondition.value = ''; selectedSort.value = 'newest'; showAdvancedFilters.value = false
 }
-
-function viewProduct(id) {
-  router.push(`/products/${id}`)
-}
-
-function formatPrice(price) {
-  if (!price) return '0'
-  return parseFloat(price).toFixed(2)
-}
-
-function getStatusClass(status) {
-  const classes = {
-    0: 'status-available',
-    1: 'status-sold',
-    2: 'status-offline'
-  }
-  return classes[status] || 'status-available'
-}
-
-function getStatusText(status) {
-  const texts = {
-    0: '在售',
-    1: '已售',
-    2: '下架'
-  }
-  return texts[status] || '在售'
-}
-
+function viewProduct(id) { router.push(`/products/${id}`) }
+function formatPrice(price) { if (!price) return '0'; return parseFloat(price).toFixed(2) }
+function getStatusClass(status) { return ({ 0: 'badge-success', 1: 'badge-danger', 2: 'badge' })[status] || 'badge-success' }
+function getStatusText(status) { return ({ 0: '在售', 1: '已售', 2: '下架' })[status] || '在售' }
 async function handleLogout() {
-  localStorage.removeItem('token')
-  localStorage.removeItem('username')
-  sessionStorage.removeItem('justLoggedIn')
-  router.push('/login')
+  localStorage.removeItem('token'); localStorage.removeItem('username'); sessionStorage.removeItem('justLoggedIn'); router.push('/login')
 }
 
 onMounted(() => {
   loadSearchHistory()
-  
-  if (route.query.search) {
-    searchKeyword.value = route.query.search
-  }
-  
-  if (route.query.category) {
-    activeCategory.value = route.query.category
-  }
-  
+  if (route.query.search) searchKeyword.value = route.query.search
+  if (route.query.category) activeCategory.value = route.query.category
   fetchProducts()
 })
 
-// 监听路由变化，重新加载数据
-watch(
-  () => route.fullPath,
-  () => {
-    if (route.query.search) {
-      searchKeyword.value = route.query.search
-    }
-    
-    if (route.query.category) {
-      activeCategory.value = route.query.category
-    }
-    
-    fetchProducts()
-  }
-)
+watch(() => route.fullPath, () => {
+  if (route.query.search) searchKeyword.value = route.query.search
+  if (route.query.category) activeCategory.value = route.query.category
+  fetchProducts()
+})
 </script>
 
 <style scoped>
-.products-page {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b4e 100%);
-  position: relative;
-  overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-}
-
-.animated-bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.gradient-sphere {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.3;
-  animation: floatBg 25s ease-in-out infinite;
-}
-
-.sphere-1 {
-  width: 800px;
-  height: 800px;
-  background: linear-gradient(135deg, #10b981, #3b82f6);
-  top: -400px;
-  right: -200px;
-}
-
-.sphere-2 {
-  width: 600px;
-  height: 600px;
-  background: linear-gradient(135deg, #8b5cf6, #ec4899);
-  bottom: -200px;
-  left: -200px;
-  animation-delay: -8s;
-}
-
-.sphere-3 {
-  width: 500px;
-  height: 500px;
-  background: linear-gradient(135deg, #f59e0b, #ef4444);
-  top: 40%;
-  left: 40%;
-  animation-delay: -16s;
-}
-
-@keyframes floatBg {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(50px, -50px) scale(1.05); }
-  50% { transform: translate(-30px, 30px) scale(0.95); }
-  75% { transform: translate(30px, 50px) scale(1.02); }
-}
-
-.main-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: rgba(15, 15, 35, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.header-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 24px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo-section {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.logo-section:hover {
-  transform: scale(1.02);
-}
-
-.header-logo {
-  width: 42px;
-  height: 42px;
-}
-
-.brand-name {
-  font-size: 22px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #10b981, #3b82f6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.main-nav {
-  display: flex;
-  gap: 8px;
-}
-
-.nav-link {
-  padding: 10px 20px;
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
-
-.nav-link:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.nav-link.active {
-  color: white;
-  background: rgba(16, 185, 129, 0.2);
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.action-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.action-btn svg {
-  width: 20px;
-  height: 20px;
-}
-
-.action-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.user-avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid rgba(16, 185, 129, 0.5);
-}
-
-.user-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.main-content {
-  padding: 120px 24px 60px;
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.page-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.page-title {
-  font-size: 36px;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 8px;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.search-section {
-  margin-bottom: 30px;
-}
-
-.search-bar-wrapper {
-  position: relative;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-  padding: 6px 6px 6px 20px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  margin-bottom: 16px;
-}
-
-.search-bar:focus-within {
-  border-color: rgba(16, 185, 129, 0.5);
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.search-icon {
-  width: 22px;
-  height: 22px;
-  color: rgba(255, 255, 255, 0.5);
-  margin-right: 12px;
-}
-
-.search-bar input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  color: white;
-  padding: 12px 0;
-}
-
-.search-bar input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.search-bar .search-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #10b981, #059669);
-  border: none;
-  border-radius: 12px;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.search-bar .search-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.search-bar .search-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
-}
-
-.clear-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 8px;
-  color: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  margin-right: 8px;
-  transition: all 0.3s ease;
-}
-
-.clear-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-}
-
-.clear-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.search-suggestions {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  margin-top: 8px;
-  background: rgba(20, 20, 40, 0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-  padding: 12px 0;
-  z-index: 1000;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.suggestion-section {
-  padding: 8px 0;
-}
-
-.suggestion-section + .suggestion-section {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.suggestion-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px 16px 12px;
-}
-
-.suggestion-header span {
-  font-size: 12px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.clear-history-btn {
-  font-size: 12px;
-  color: rgba(239, 68, 68, 0.8);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.clear-history-btn:hover {
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
-}
-
-.suggestion-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 16px;
-  color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.suggestion-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
-}
-
-.suggestion-item svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  opacity: 0.5;
-}
-
-.suggestion-item span {
-  flex: 1;
-  font-size: 14px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.advanced-filters {
-  position: relative;
-}
-
-.filter-toggle-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 16px;
-}
-
-.filter-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(16, 185, 129, 0.5);
-}
-
-.filter-toggle-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.advanced-filter-options {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 20px;
-  backdrop-filter: blur(10px);
-}
-
-.filter-group {
-  margin-bottom: 24px;
-}
-
-.filter-group:last-child {
-  margin-bottom: 0;
-}
-
-.filter-group label {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 12px;
-}
-
-.price-range {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.price-input {
-  flex: 1;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  color: white;
-  font-size: 14px;
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-.price-input:focus {
-  border-color: rgba(16, 185, 129, 0.5);
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.price-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.price-range span {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 16px;
-}
-
-.error-message {
-  color: #ef4444;
-  font-size: 12px;
-  margin-top: 8px;
-  margin-left: 4px;
-}
-
-.condition-options,
-.sort-options {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.condition-btn,
-.sort-btn {
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.condition-btn:hover,
-.sort-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: white;
-}
-
-.condition-btn.active,
-.sort-btn.active {
-  background: linear-gradient(135deg, #10b981, #059669);
-  border-color: transparent;
-  color: white;
-}
-
-.filter-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.apply-filter-btn,
-.reset-filter-btn {
-  flex: 1;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.apply-filter-btn {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-}
-
-.apply-filter-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
-}
-
-.reset-filter-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.reset-filter-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-}
-
-.filter-section {
-  margin-bottom: 30px;
-}
-
-.filter-tabs {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.filter-tab {
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.filter-tab:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-}
-
-.filter-tab.active {
-  background: linear-gradient(135deg, #10b981, #059669);
-  border-color: transparent;
-  color: white;
-}
-
-.products-section {
-  min-height: 400px;
-}
-
-.loading-container,
-.error-container,
-.empty-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 20px;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top-color: #10b981;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 20px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-.error-container svg,
-.empty-container svg {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 20px;
-  opacity: 0.5;
-}
-
-.retry-btn,
-.post-btn {
-  margin-top: 20px;
-  padding: 12px 32px;
-  background: linear-gradient(135deg, #10b981, #059669);
-  border: none;
-  border-radius: 12px;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.retry-btn:hover,
-.post-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
-}
-
-.empty-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.clear-filters-btn {
-  padding: 12px 32px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.clear-filters-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: white;
-  transform: translateY(-2px);
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-.product-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(16, 185, 129, 0.4);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.product-image {
-  position: relative;
-  height: 200px;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.product-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.image-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image-placeholder svg {
-  width: 64px;
-  height: 64px;
-  color: rgba(255, 255, 255, 0.3);
-}
-
-.product-status {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.status-available {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-}
-
-.status-sold {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-}
-
-.status-offline {
-  background: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.product-info {
-  padding: 20px;
-}
-
-.product-title {
-  font-size: 17px;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.product-desc {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.product-meta {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.product-category,
-.product-condition {
-  padding: 4px 10px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.product-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.product-price {
-  display: flex;
-  align-items: baseline;
-  gap: 2px;
-}
-
-.price-symbol {
-  font-size: 18px;
-  font-weight: 700;
-  color: #10b981;
-}
-
-.price-value {
-  font-size: 24px;
-  font-weight: 700;
-  color: #10b981;
-}
-
-.product-views {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.main-footer {
-  position: relative;
-  z-index: 1;
-  padding: 30px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 60px;
-}
-
-.footer-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.footer-content p {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
-}
+/* 头部（与首页一致） */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner { height: var(--header-h); display: flex; align-items: center; gap: var(--space-8); }
+.brand { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--text); flex-shrink: 0; }
+.brand:hover { color: var(--text); }
+.brand-mark { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--accent); color: #fff; }
+.brand-mark svg { width: 17px; height: 17px; }
+.brand-name { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: -0.01em; }
+.main-nav { display: flex; gap: var(--space-1); flex: 1; }
+.nav-link { padding: 8px 12px; font-size: var(--text-base); color: var(--text-2); border-radius: var(--radius-sm); transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease); }
+.nav-link:hover { color: var(--text); background: var(--surface-3); }
+.nav-link.router-link-exact-active { color: var(--accent); font-weight: var(--weight-medium); }
+.header-actions { display: flex; align-items: center; gap: var(--space-2); }
+.icon-btn { width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid transparent; border-radius: var(--radius); background: transparent; color: var(--text-2); transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease); }
+.icon-btn:hover { background: var(--surface-3); color: var(--text); }
+.icon-btn svg { width: 20px; height: 20px; }
+.avatar { width: 36px; height: 36px; padding: 0; border: 1px solid var(--border); border-radius: var(--radius-full); overflow: hidden; background: var(--surface-3); }
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 页头 */
+.page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-6); }
+.page-title { font-size: var(--text-2xl); font-weight: var(--weight-semibold); letter-spacing: -0.02em; }
+.page-sub { margin-top: var(--space-1); color: var(--text-2); font-size: var(--text-sm); }
+
+/* 搜索 */
+.search-wrap { position: relative; margin-bottom: var(--space-6); }
+.search-bar { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4); background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius); transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease); }
+.search-bar:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.search-icon { width: 20px; height: 20px; color: var(--text-3); flex-shrink: 0; }
+.search-bar input { flex: 1; border: none; outline: none; background: transparent; font-size: var(--text-base); color: var(--text); }
+.search-bar input::placeholder { color: var(--text-3); }
+.clear-btn { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: none; background: var(--surface-3); border-radius: var(--radius-sm); color: var(--text-2); }
+.clear-btn svg { width: 16px; height: 16px; }
+
+.suggestions { position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 50; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: var(--space-2); }
+.suggestion-section + .suggestion-section { border-top: 1px solid var(--border); margin-top: var(--space-2); padding-top: var(--space-2); }
+.suggestion-head { display: flex; align-items: center; justify-content: space-between; padding: var(--space-1) var(--space-2); }
+.suggestion-item { display: flex; align-items: center; gap: var(--space-3); width: 100%; padding: 9px 10px; text-align: left; border: none; background: transparent; border-radius: var(--radius-sm); color: var(--text-2); font-size: var(--text-base); }
+.suggestion-item:hover { background: var(--surface-2); color: var(--text); }
+.suggestion-item svg { width: 16px; height: 16px; color: var(--text-3); flex-shrink: 0; }
+.suggestion-item span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.filter-toggle { margin-top: var(--space-3); }
+.filters-panel { margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-5); }
+.filter-group .field-label { margin-bottom: var(--space-2); }
+.price-range { display: flex; align-items: center; gap: var(--space-3); max-width: 380px; }
+.range-sep { color: var(--text-3); }
+.error-msg { color: var(--danger); font-size: var(--text-xs); margin-top: var(--space-2); }
+.chip-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.category-row { margin-top: var(--space-4); }
+.chip { padding: 7px 14px; font-size: var(--text-sm); color: var(--text-2); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-full); transition: all var(--dur-fast) var(--ease); }
+.chip:hover { border-color: var(--border-strong); color: var(--text); }
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.filter-actions { display: flex; gap: var(--space-3); }
+
+/* 商品网格 */
+.products-section { min-height: 400px; margin-top: var(--space-6); }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-5); }
+.product-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.product-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
+.product-image { position: relative; aspect-ratio: 4 / 3; background: var(--surface-3); }
+.product-img { width: 100%; height: 100%; object-fit: cover; }
+.image-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-3); }
+.image-placeholder svg { width: 44px; height: 44px; }
+.product-status { position: absolute; top: var(--space-3); right: var(--space-3); }
+.product-info { padding: var(--space-4); }
+.product-title { font-size: var(--text-base); font-weight: var(--weight-medium); color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.product-desc { margin-top: 4px; font-size: var(--text-sm); color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.product-meta { display: flex; gap: var(--space-2); margin: var(--space-3) 0; }
+.tag { padding: 2px 10px; font-size: var(--text-xs); color: var(--text-2); background: var(--surface-3); border-radius: var(--radius-full); }
+.product-footer { display: flex; align-items: baseline; justify-content: space-between; }
+.product-price { display: flex; align-items: baseline; gap: 1px; color: var(--accent); }
+.price-symbol { font-size: var(--text-sm); font-weight: var(--weight-semibold); }
+.price-value { font-size: var(--text-xl); font-weight: var(--weight-semibold); letter-spacing: -0.02em; }
+.product-views { font-size: var(--text-xs); color: var(--text-3); }
+
+.empty-actions { display: flex; gap: var(--space-3); }
+
+@media (max-width: 720px) {
+  .main-nav { display: none; }
+  .page-head { flex-direction: column; align-items: flex-start; }
+  .site-footer { margin-top: var(--space-12); background: var(--surface); border-top: 1px solid var(--border); padding: var(--space-6) 0; color: var(--text-3); font-size: var(--text-sm); }
+}
+.site-footer { margin-top: var(--space-16); background: var(--surface); border-top: 1px solid var(--border); padding: var(--space-6) 0; color: var(--text-3); font-size: var(--text-sm); }
 </style>

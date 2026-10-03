@@ -328,3 +328,39 @@ onMounted(() => {
   background-color: #45a049;
 }
 </style>
+
+<!-- ===== 简约浅色主题覆盖 ===== -->
+<style scoped>
+.admin-users { max-width: var(--container); padding: var(--space-6); }
+.admin-header { margin-bottom: var(--space-5); }
+.admin-header h1 { font-size: var(--text-2xl); font-weight: var(--weight-semibold); letter-spacing: -0.02em; color: var(--text); }
+.back-link { color: var(--text); background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 8px 14px; font-size: var(--text-sm); }
+.back-link:hover { background: var(--surface-2); }
+
+.user-search { display: flex; gap: var(--space-3); margin-bottom: var(--space-5); }
+.search-input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-strong); border-radius: var(--radius); font-size: var(--text-base); color: var(--text); background: var(--surface); }
+.search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.search-btn { padding: 10px 20px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); font-size: var(--text-base); font-weight: var(--weight-medium); }
+.search-btn:hover { background: var(--accent-hover); }
+
+.users-table-container { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.users-table { width: 100%; border-collapse: collapse; box-shadow: none; }
+.users-table th, .users-table td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border); font-size: var(--text-sm); }
+.users-table th { background: var(--surface-2); color: var(--text-2); font-weight: var(--weight-medium); text-align: left; }
+.users-table td { color: var(--text); }
+.users-table tr:last-child td { border-bottom: none; }
+.users-table tr:hover { background: var(--surface-2); }
+
+.action-button { padding: 5px 12px; border-radius: var(--radius-sm); font-size: var(--text-sm); border: 1px solid transparent; background: var(--surface-3); color: var(--text); }
+.disable-button { background: var(--danger-soft); color: var(--danger); }
+.disable-button:hover { background: var(--danger); color: #fff; }
+.enable-button { background: var(--accent-soft); color: var(--accent); }
+.enable-button:hover { background: var(--accent); color: #fff; }
+
+.pagination { display: flex; align-items: center; justify-content: center; gap: var(--space-2); margin-top: var(--space-5); padding-top: var(--space-5); border-top: 1px solid var(--border); }
+.pagination-button { padding: 6px 14px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font-size: var(--text-sm); }
+.pagination-button:hover:not(:disabled) { background: var(--surface-2); transform: none; }
+.pagination-button:disabled { opacity: 0.5; }
+.pagination-info { font-size: var(--text-sm); color: var(--text-2); }
+.no-users { text-align: center; padding: var(--space-12); color: var(--text-3); font-size: var(--text-base); }
+</style>

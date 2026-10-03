@@ -288,3 +288,27 @@ onMounted(() => {
   font-size: 1.2rem;
 }
 </style>
+
+<!-- ===== 简约浅色主题覆盖 ===== -->
+<style scoped>
+.admin-messages { max-width: var(--container); padding: var(--space-6); }
+.admin-messages h1 { font-size: var(--text-2xl); font-weight: var(--weight-semibold); letter-spacing: -0.02em; color: var(--text); margin-bottom: var(--space-5); }
+.message-search { display: flex; gap: var(--space-3); margin-bottom: var(--space-5); }
+.search-input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-strong); border-radius: var(--radius); font-size: var(--text-base); color: var(--text); background: var(--surface); }
+.search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.search-btn { padding: 10px 20px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); font-size: var(--text-base); font-weight: var(--weight-medium); }
+.search-btn:hover { background: var(--accent-hover); }
+.message-list { display: flex; flex-direction: column; gap: var(--space-4); }
+.message-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-5); box-shadow: none; }
+.message-header h3 { font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--text); }
+.message-date { font-size: var(--text-sm); color: var(--text-2); }
+.message-info p { margin: 4px 0; color: var(--text-2); font-size: var(--text-sm); }
+.btn-danger { padding: 7px 16px; background: var(--danger-soft); color: var(--danger); border: none; border-radius: var(--radius-sm); font-size: var(--text-sm); }
+.btn-danger:hover { background: var(--danger); color: #fff; }
+.pagination { display: flex; align-items: center; justify-content: center; gap: var(--space-2); margin-top: var(--space-5); padding-top: var(--space-5); border-top: 1px solid var(--border); }
+.pagination-button { padding: 6px 14px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font-size: var(--text-sm); }
+.pagination-button:hover:not(:disabled) { background: var(--surface-2); transform: none; }
+.pagination-button:disabled { opacity: 0.5; }
+.pagination-info { font-size: var(--text-sm); color: var(--text-2); }
+.no-messages { text-align: center; padding: var(--space-12); color: var(--text-3); font-size: var(--text-base); }
+</style>
