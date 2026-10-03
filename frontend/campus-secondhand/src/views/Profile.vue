@@ -530,6 +530,8 @@ const userInfo = ref({
   avatar: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"%3E%3Ccircle cx="20" cy="20" r="20" fill="%23333"/%3E%3Ccircle cx="20" cy="16" r="6" fill="%23666"/%3E%3Cpath d="M8 36c0-6.6 5.4-12 12-12s12 5.4 12 12" fill="%23666"/%3E%3C/svg%3E',
   bio: '',
   location: '校园',
+  qq: '',
+  wechat: '',
   joinDate: '2025年1月',
   level: '青铜用户'
 })
@@ -615,6 +617,8 @@ async function loadUserProfile() {
       userInfo.value.avatar = data.avatar || userInfo.value.avatar
       userInfo.value.bio = data.bio || ''
       userInfo.value.location = data.location || '校园'
+      userInfo.value.qq = data.qq || ''
+      userInfo.value.wechat = data.wechat || ''
     }
   } catch (e) {
     console.error('Failed to load user profile:', e)
@@ -836,8 +840,8 @@ function openEditModal() {
     avatar: userInfo.value.avatar,
     bio: userInfo.value.bio || '',
     location: userInfo.value.location || '',
-    qq: '',
-    wechat: ''
+    qq: userInfo.value.qq || '',
+    wechat: userInfo.value.wechat || ''
   }
   showEditModal.value = true
 }
@@ -926,11 +930,15 @@ async function saveProfile() {
       userInfo.value.avatar = data.avatar
       userInfo.value.bio = data.bio
       userInfo.value.location = data.location
+      userInfo.value.qq = data.qq
+      userInfo.value.wechat = data.wechat
       
       localStorage.setItem('username', data.username)
       localStorage.setItem('avatar', data.avatar || '')
       localStorage.setItem('bio', data.bio || '')
       localStorage.setItem('location', data.location || '')
+      localStorage.setItem('qq', data.qq || '')
+      localStorage.setItem('wechat', data.wechat || '')
       
       showEditModal.value = false
       alert('保存成功！')
@@ -939,7 +947,7 @@ async function saveProfile() {
     }
   } catch (error) {
     console.error('保存失败:', error)
-    alert('保存失败，请稍后重试')
+    alert(error.message || '保存失败，请稍后重试')
   } finally {
     isSaving.value = false
   }

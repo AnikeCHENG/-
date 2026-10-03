@@ -53,7 +53,11 @@ public class UserController {
                     "username", user.getUsername(),
                     "email", user.getEmail(),
                     "phone", user.getPhone() != null ? user.getPhone() : "",
-                    "avatar", user.getAvatar() != null ? user.getAvatar() : ""
+                    "avatar", user.getAvatar() != null ? user.getAvatar() : "",
+                    "bio", user.getBio() != null ? user.getBio() : "",
+                    "location", user.getLocation() != null ? user.getLocation() : "",
+                    "qq", user.getQq() != null ? user.getQq() : "",
+                    "wechat", user.getWechat() != null ? user.getWechat() : ""
             )));
         } catch (Exception e) {
             log.error("获取用户资料失败: ", e);
@@ -88,6 +92,38 @@ public class UserController {
                 user.setAvatar(profileData.get("avatar"));
             }
 
+            if (profileData.containsKey("bio")) {
+                String bio = profileData.get("bio");
+                if (bio != null && bio.length() > 255) {
+                    return ResponseEntity.ok(ApiResponse.error(400, "个人简介不能超过255个字符"));
+                }
+                user.setBio(bio);
+            }
+
+            if (profileData.containsKey("location")) {
+                String location = profileData.get("location");
+                if (location != null && location.length() > 100) {
+                    return ResponseEntity.ok(ApiResponse.error(400, "所在位置不能超过100个字符"));
+                }
+                user.setLocation(location);
+            }
+
+            if (profileData.containsKey("qq")) {
+                String qq = profileData.get("qq");
+                if (qq != null && qq.length() > 20) {
+                    return ResponseEntity.ok(ApiResponse.error(400, "QQ号不能超过20个字符"));
+                }
+                user.setQq(qq);
+            }
+
+            if (profileData.containsKey("wechat")) {
+                String wechat = profileData.get("wechat");
+                if (wechat != null && wechat.length() > 50) {
+                    return ResponseEntity.ok(ApiResponse.error(400, "微信号不能超过50个字符"));
+                }
+                user.setWechat(wechat);
+            }
+
             userRepository.updateById(user);
 
             return ResponseEntity.ok(ApiResponse.success("保存成功", Map.of(
@@ -95,7 +131,11 @@ public class UserController {
                     "username", user.getUsername(),
                     "email", user.getEmail(),
                     "phone", user.getPhone() != null ? user.getPhone() : "",
-                    "avatar", user.getAvatar() != null ? user.getAvatar() : ""
+                    "avatar", user.getAvatar() != null ? user.getAvatar() : "",
+                    "bio", user.getBio() != null ? user.getBio() : "",
+                    "location", user.getLocation() != null ? user.getLocation() : "",
+                    "qq", user.getQq() != null ? user.getQq() : "",
+                    "wechat", user.getWechat() != null ? user.getWechat() : ""
             )));
         } catch (Exception e) {
             log.error("更新用户资料失败: ", e);
@@ -116,7 +156,9 @@ public class UserController {
                     "username", user.getUsername(),
                     "email", user.getEmail(),
                     "phone", user.getPhone() != null ? user.getPhone() : "",
-                    "avatar", user.getAvatar() != null ? user.getAvatar() : ""
+                    "avatar", user.getAvatar() != null ? user.getAvatar() : "",
+                    "bio", user.getBio() != null ? user.getBio() : "",
+                    "location", user.getLocation() != null ? user.getLocation() : ""
             )));
         } catch (Exception e) {
             log.error("获取用户信息失败: ", e);

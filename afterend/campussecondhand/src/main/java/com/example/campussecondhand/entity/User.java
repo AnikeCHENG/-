@@ -26,6 +26,18 @@ public class User {
     @TableField("avatar")
     private String avatar;
 
+    @TableField("bio")
+    private String bio;
+
+    @TableField("location")
+    private String location;
+
+    @TableField("qq")
+    private String qq;
+
+    @TableField("wechat")
+    private String wechat;
+
     @TableField("status")
     private Integer status = 1;
 
@@ -60,6 +72,18 @@ public class User {
 
     public String getAvatar() { return avatar; }
     public void setAvatar(String avatar) { this.avatar = avatar; }
+
+    public String getBio() { return bio; }
+    public void setBio(String bio) { this.bio = bio; }
+
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
+
+    public String getQq() { return qq; }
+    public void setQq(String qq) { this.qq = qq; }
+
+    public String getWechat() { return wechat; }
+    public void setWechat(String wechat) { this.wechat = wechat; }
 
     public Integer getStatus() { return status; }
     public void setStatus(Integer status) { this.status = status; }
